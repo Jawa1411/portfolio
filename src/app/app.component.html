@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="menu-container">
+    <mat-sidenav #sidenav class="menu-items" opened [disableClose]="true" mode="side">
+        <p>About</p>
+        <p>Experience</p>
+        <p>Qualification</p>
+        <p>Achivements</p>
+    </mat-sidenav>
+    <mat-sidenav-content class="menu-content">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
