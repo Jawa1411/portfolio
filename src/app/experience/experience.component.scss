@@ -1,0 +1,200 @@
+// ── Timeline layout ────────────────────────────────────────────────────────
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: var(--accent-glow);
+
+  &.draw { transform: scaleY(1); }
+}
+
+// ── Timeline entry ─────────────────────────────────────────────────────────
+.timeline-entry {
+  position: relative;
+  margin-bottom: 40px;
+
+  &:last-child { margin-bottom: 0; }
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -46px;
+  top: 20px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: var(--accent-glow);
+
+  mat-icon {
+    font-size: 0.9rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    color: var(--accent);
+  }
+}
+
+// ── Company card ───────────────────────────────────────────────────────────
+.company-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color var(--transition), box-shadow var(--transition);
+
+  &:hover {
+    border-color: var(--accent-mid);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.company-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 24px 20px;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  background: var(--bg-card);
+  z-index: 1;
+  border-bottom: 1px solid var(--border);
+}
+
+.company-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-1);
+  margin: 0 0 4px;
+}
+
+.company-role {
+  font-size: 0.82rem;
+  color: var(--accent);
+  margin: 0;
+}
+
+.company-period {
+  font-size: 0.78rem;
+  color: var(--text-2);
+  white-space: nowrap;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-mid);
+  color: var(--accent);
+  padding: 4px 10px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+// ── Projects ───────────────────────────────────────────────────────────────
+.projects-list {
+  padding: 8px 0;
+}
+
+.project {
+  border-bottom: 1px solid var(--border);
+
+  &:last-child { border-bottom: none; }
+}
+
+.project-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-1);
+  text-align: left;
+  gap: 12px;
+  transition: background var(--transition);
+
+  &:hover { background: var(--accent-dim); }
+}
+
+.project-toggle-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.project-role-badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--accent-mid);
+  padding: 2px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.project-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.toggle-icon {
+  font-size: 1.1rem;
+  color: var(--text-2);
+  transition: transform var(--transition);
+  flex-shrink: 0;
+
+  &.rotated { transform: rotate(180deg); }
+}
+
+// ── Bullets ────────────────────────────────────────────────────────────────
+.bullets {
+  list-style: none;
+  margin: 0;
+  padding: 8px 24px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: slideDown 0.25s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.bullet {
+  position: relative;
+  font-size: 0.875rem;
+  color: var(--text-2);
+  line-height: 1.65;
+  padding-left: 14px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+}

@@ -1,0 +1,41 @@
+<section class="section education">
+
+  <div class="section-header reveal">
+    <h2 class="section-title">My <span>Education</span></h2>
+    <div class="section-line"></div>
+    <p class="section-sub">Academic background and qualifications</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-line"></div>
+
+    @for (edu of education; track edu.degree; let i = $index) {
+      <div
+        class="timeline-entry edu-card reveal"
+        [class.reveal-left]="i % 2 === 0"
+        [class.reveal-right]="i % 2 !== 0"
+        [style.transitionDelay]="i * 0.15 + 's'"
+        [attr.data-index]="i"
+      >
+        <div class="timeline-dot">
+          <mat-icon>school</mat-icon>
+        </div>
+
+        <div class="edu-card-inner shimmer-card">
+          <div class="edu-header">
+            <div class="edu-info">
+              <h3 class="edu-degree">{{ edu.degree }}</h3>
+              <p class="edu-institution">{{ edu.institution }}</p>
+              <p class="edu-year">{{ edu.year }}</p>
+            </div>
+            <div class="edu-score">
+              <div class="score-value">{{ displayScores[i] }}</div>
+              <div class="score-type">{{ edu.scoreType === 'percentage' ? 'Score' : 'CGPA' }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+</section>

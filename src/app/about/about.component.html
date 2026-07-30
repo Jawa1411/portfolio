@@ -1,0 +1,45 @@
+<section class="section about">
+
+  <div class="section-header reveal">
+    <h2 class="section-title">About <span>Me</span></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="about-body">
+
+    <!-- Avatar + summary -->
+    <div class="about-left reveal reveal-left" style="transition-delay:0.1s">
+      <div class="about-avatar">
+        <div class="avatar-ring"></div>
+        <div class="avatar-inner">JS</div>
+      </div>
+    </div>
+
+    <div class="about-right reveal" style="transition-delay:0.2s">
+      <p class="about-role">{{ hero.name }}</p>
+      <h3 class="about-title">{{ hero.title }}</h3>
+      <p class="about-summary">{{ hero.summary }}</p>
+
+      <div class="about-contact">
+        <a [href]="'mailto:' + hero.email" class="contact-chip">
+          <mat-icon>email</mat-icon> {{ hero.email }}
+        </a>
+        <a [href]="'tel:' + hero.phone" class="contact-chip">
+          <mat-icon>phone</mat-icon> {{ hero.phone }}
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Stats row -->
+  <div class="stats-row">
+    @for (stat of stats; track stat.label; let i = $index) {
+      <div class="stat-card reveal shimmer-card" [style.transitionDelay]="(0.1 + i * 0.1) + 's'">
+        <div class="stat-value">{{ stat.value }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+      </div>
+    }
+  </div>
+
+</section>

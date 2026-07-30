@@ -1,0 +1,69 @@
+<section class="section experience">
+
+  <div class="section-header reveal">
+    <h2 class="section-title">Work <span>Experience</span></h2>
+    <div class="section-line"></div>
+    <p class="section-sub">Companies and projects I've contributed to</p>
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-line"></div>
+
+    @for (exp of experiences; track exp.company; let ei = $index) {
+      <div
+        class="timeline-entry reveal"
+        [class.reveal-left]="ei % 2 === 0"
+        [class.reveal-right]="ei % 2 !== 0"
+        [style.transitionDelay]="ei * 0.15 + 's'"
+      >
+        <!-- Timeline dot -->
+        <div class="timeline-dot">
+          <mat-icon>work</mat-icon>
+        </div>
+
+        <!-- Company card -->
+        <div class="company-card shimmer-card">
+          <div class="company-header">
+            <div>
+              <h3 class="company-name">{{ exp.company }}</h3>
+              <p class="company-role">{{ exp.role }}</p>
+            </div>
+            <span class="company-period">{{ exp.period }}</span>
+          </div>
+
+          <!-- Projects -->
+          <div class="projects-list">
+            @for (project of exp.projects; track project.title; let pi = $index) {
+              <div class="project">
+                <button
+                  class="project-toggle"
+                  (click)="toggleProject(exp.company + pi)"
+                  [attr.aria-expanded]="isExpanded(exp.company + pi)"
+                >
+                  <div class="project-toggle-left">
+                    <span class="project-role-badge">{{ project.role }}</span>
+                    <span class="project-title">{{ project.title }}</span>
+                  </div>
+                  <mat-icon class="toggle-icon" [class.rotated]="isExpanded(exp.company + pi)">
+                    expand_more
+                  </mat-icon>
+                </button>
+
+                @if (isExpanded(exp.company + pi)) {
+                  <ul class="bullets">
+                    @for (bullet of project.bullets; track bullet) {
+                      <li class="bullet">{{ bullet }}</li>
+                    }
+                  </ul>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+
+  </div>
+
+</section>

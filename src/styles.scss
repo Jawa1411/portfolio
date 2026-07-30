@@ -1,4 +1,264 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// ─── CUSTOM GREEN PALETTE ──────────────────────────────────────────────────
+$portfolio-green: (
+  50:   #e0ffe8,
+  100:  #b3ffc6,
+  200:  #80ffa3,
+  300:  #4dff80,
+  400:  #00FF41,
+  500:  #00e63a,
+  600:  #00cc34,
+  700:  #00b32d,
+  800:  #009927,
+  900:  #007a1f,
+  A100: #b3ffc8,
+  A200: #66ff96,
+  A400: #00FF41,
+  A700: #00cc2e,
+  contrast: (
+    50:   rgba(black, .87),
+    100:  rgba(black, .87),
+    200:  rgba(black, .87),
+    300:  rgba(black, .87),
+    400:  rgba(black, .87),
+    500:  rgba(black, .87),
+    600:  rgba(black, .87),
+    700:  white,
+    800:  white,
+    900:  white,
+    A100: rgba(black, .87),
+    A200: rgba(black, .87),
+    A400: rgba(black, .87),
+    A700: rgba(black, .87),
+  )
+);
+
+$primary: mat.define-palette(mat.$grey-palette, 900, 800, 50);
+$accent:  mat.define-palette($portfolio-green, A400, A200, A700);
+$warn:    mat.define-palette(mat.$red-palette);
+
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $primary,
+    accent:  $accent,
+    warn:    $warn,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: '"Roboto", "Helvetica Neue", sans-serif',
+  ),
+  density: 0,
+));
+
+$light-theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent:  $accent,
+    warn:    $warn,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: '"Roboto", "Helvetica Neue", sans-serif',
+  ),
+  density: 0,
+));
+
+@include mat.core();
+@include mat.all-component-themes($dark-theme);
+
+.light-theme {
+  @include mat.all-component-colors($light-theme);
+}
+
+// ─── DESIGN TOKENS ────────────────────────────────────────────────────────
+:root {
+  --accent:       #00FF41;
+  --accent-dim:   rgba(0, 255, 65, 0.12);
+  --accent-mid:   rgba(0, 255, 65, 0.25);
+  --accent-glow:  0 0 24px rgba(0, 255, 65, 0.4);
+
+  --bg:           #0d0d0d;
+  --bg-card:      #161616;
+  --bg-card-alt:  #1e1e1e;
+  --text-1:       #f0f0f0;
+  --text-2:       #888888;
+  --border:       rgba(255, 255, 255, 0.07);
+
+  --sidenav-w:    230px;
+  --radius:       12px;
+  --transition:   0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.light-theme {
+  --accent:       #16a34a;
+  --accent-dim:   rgba(22, 163, 74, 0.08);
+  --accent-mid:   rgba(22, 163, 74, 0.22);
+  --accent-glow:  0 0 20px rgba(22, 163, 74, 0.25);
+
+  --bg:           #f4f4f4;
+  --bg-card:      #ffffff;
+  --bg-card-alt:  #eeeeee;
+  --text-1:       #111111;
+  --text-2:       #555555;
+  --border:       rgba(0, 0, 0, 0.08);
+}
+
+// ─── BASE ────────────────────────────────────────────────────────────────
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: var(--text-1);
+  scroll-behavior: smooth;
+}
+
+// ─── MATERIAL OVERRIDES ───────────────────────────────────────────────────
+mat-sidenav-container,
+.mat-sidenav-container {
+  background: var(--bg) !important;
+  height: 100%;
+}
+
+mat-sidenav,
+.mat-sidenav {
+  background: var(--bg-card) !important;
+  border-right: 1px solid var(--border) !important;
+}
+
+mat-sidenav-content,
+.mat-sidenav-content {
+  background: var(--bg) !important;
+}
+
+// ─── SECTION LAYOUT ──────────────────────────────────────────────────────
+.section {
+  padding: 72px 56px;
+  min-height: 100vh;
+
+  @media (max-width: 768px) {
+    padding: 48px 24px;
+  }
+}
+
+.section-header {
+  margin-bottom: 56px;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: var(--text-1);
+
+  span { color: var(--accent); }
+}
+
+.section-line {
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin-top: 10px;
+}
+
+.section-sub {
+  margin: 12px 0 0;
+  color: var(--text-2);
+  font-size: 0.95rem;
+}
+
+// ─── SCROLL-TRIGGERED REVEAL ─────────────────────────────────────────────
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.reveal-left {
+    transform: translateX(-40px);
+    &.in-view { transform: translateX(0); }
+  }
+
+  &.reveal-right {
+    transform: translateX(40px);
+    &.in-view { transform: translateX(0); }
+  }
+}
+
+// ─── SHIMMER CARD ────────────────────────────────────────────────────────
+.shimmer-card {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1.5px solid transparent;
+    background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                linear-gradient(135deg, transparent 40%, var(--accent), transparent 60%) border-box;
+    background-size: 200% 200%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition);
+  }
+
+  &:hover::after {
+    opacity: 1;
+    animation: shimmerBorder 1.8s linear infinite;
+  }
+}
+
+@keyframes shimmerBorder {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+// ─── SCROLLBAR ───────────────────────────────────────────────────────────
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--accent-mid);
+  border-radius: 4px;
+  &:hover { background: var(--accent); }
+}
+
+// ─── REDUCED MOTION ──────────────────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .skill-chip {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .timeline-line { transform: scaleY(1) !important; }
+}
+
+// ─── MOBILE RESPONSIVE ───────────────────────────────────────────────────
+@media (max-width: 768px) {
+  :root { --sidenav-w: 100vw; }
+
+  .section { padding: 48px 24px; }
+  .section-title { font-size: 1.6rem; }
+}

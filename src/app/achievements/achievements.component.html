@@ -1,0 +1,31 @@
+<section class="section achievements">
+
+  <div class="section-header reveal">
+    <h2 class="section-title">Awards & <span>Achievements</span></h2>
+    <div class="section-line"></div>
+    <p class="section-sub">Recognition for performance and dedication</p>
+  </div>
+
+  <div class="awards-grid">
+    @for (award of achievements; track award.title; let i = $index) {
+      <div
+        class="award-card shimmer-card"
+        [style.transitionDelay]="i * 0.15 + 's'"
+      >
+        <div class="award-icon-wrap">
+          <mat-icon class="award-icon">{{ icons[award.title] ?? 'emoji_events' }}</mat-icon>
+        </div>
+        <div class="award-content">
+          <div class="award-meta">
+            <span class="award-company">{{ award.company }}</span>
+            <span class="award-period">{{ award.period }}</span>
+          </div>
+          <h3 class="award-title">{{ award.title }}</h3>
+          <p class="award-description">{{ award.description }}</p>
+        </div>
+        <div class="award-pulse"></div>
+      </div>
+    }
+  </div>
+
+</section>

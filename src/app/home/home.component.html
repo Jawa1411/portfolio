@@ -1,1 +1,60 @@
-<p>Home page</p>
+<div class="hero">
+
+  <!-- Parallax background -->
+  <div class="hero-bg" #heroBg>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <!-- Omnitrix dial -->
+  <div class="dial-wrap" #dialWrap>
+    <div class="omnitrix">
+      <div class="ring ring-outer" #ringOuter></div>
+      <div class="ring ring-inner" #ringInner></div>
+      <div class="ring-center" #ringCenter>
+        <div class="ring-symbol"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flash overlay -->
+  <div class="flash" #flash></div>
+
+  <!-- Hero content -->
+  <div class="hero-content" #heroContent>
+    <p class="hero-greeting">Hi, I'm</p>
+    <h1 class="hero-name">Jawahar <span>S</span></h1>
+
+    <div class="hero-title-wrap">
+      <span class="typewriter" #typewriter></span><span class="cursor">|</span>
+    </div>
+
+    <p class="hero-summary">{{ hero.summary }}</p>
+
+    <div class="hero-actions">
+      <a mat-raised-button color="accent" [href]="'mailto:' + hero.email" class="btn-contact">
+        <mat-icon>email</mat-icon>
+        Contact Me
+      </a>
+      <a mat-stroked-button href="JAWAHAR S.docx" download class="btn-cv">
+        <mat-icon>download</mat-icon>
+        Download CV
+      </a>
+    </div>
+
+    <div class="hero-links">
+      <a [href]="'tel:' + hero.phone" matTooltip="Call me" class="link-icon">
+        <mat-icon>phone</mat-icon>
+      </a>
+      <a [href]="'mailto:' + hero.email" matTooltip="Email me" class="link-icon">
+        <mat-icon>email</mat-icon>
+      </a>
+      <a [href]="hero.linkedin" target="_blank" matTooltip="LinkedIn" class="link-icon">
+        <mat-icon>open_in_new</mat-icon>
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </div>
+
+</div>

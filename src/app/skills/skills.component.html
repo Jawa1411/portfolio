@@ -1,0 +1,25 @@
+<section class="section skills">
+
+  <div class="section-header reveal">
+    <h2 class="section-title">Technical <span>Skills</span></h2>
+    <div class="section-line"></div>
+    <p class="section-sub">Technologies I work with every day</p>
+  </div>
+
+  <div class="skills-grid">
+    @for (group of skillGroups; track group.category; let gi = $index) {
+      <div class="skill-group" [style.animationDelay]="gi * 0.1 + 's'">
+        <h3 class="group-title">
+          <span class="group-dot"></span>
+          {{ group.category }}
+        </h3>
+        <div class="chips-wrap">
+          @for (skill of group.skills; track skill) {
+            <span class="skill-chip">{{ skill }}</span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+</section>

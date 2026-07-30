@@ -1,0 +1,226 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+// ── Parallax background ───────────────────────────────────────────────────
+.hero-bg {
+  position: absolute;
+  inset: -40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+
+  &.orb-1 {
+    width: 520px;
+    height: 520px;
+    top: -100px;
+    right: -80px;
+    background: radial-gradient(circle, #00FF41, transparent 70%);
+  }
+
+  &.orb-2 {
+    width: 380px;
+    height: 380px;
+    bottom: -60px;
+    left: -60px;
+    background: radial-gradient(circle, rgba(0, 255, 65, 0.6), transparent 70%);
+  }
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+// ── Omnitrix dial ────────────────────────────────────────────────────────
+.dial-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.omnitrix {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2.5px solid var(--accent);
+
+  &.ring-outer {
+    inset: 0;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    box-shadow: 0 0 14px rgba(0, 255, 65, 0.3);
+  }
+
+  &.ring-inner {
+    inset: 20%;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+}
+
+.ring-center {
+  position: absolute;
+  inset: 35%;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--accent-glow);
+}
+
+.ring-symbol {
+  width: 40%;
+  height: 40%;
+  background: #0d0d0d;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+// ── Flash overlay ─────────────────────────────────────────────────────────
+.flash {
+  position: fixed;
+  inset: 0;
+  background: var(--accent);
+  z-index: 999;
+  pointer-events: none;
+}
+
+// ── Hero content ─────────────────────────────────────────────────────────
+.hero-content {
+  position: relative;
+  z-index: 5;
+  max-width: 680px;
+  padding: 48px 56px;
+
+  @media (max-width: 768px) {
+    padding: 32px 24px;
+  }
+}
+
+.hero-greeting {
+  font-size: 1rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin: 0 0 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero-name {
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 800;
+  margin: 0 0 12px;
+  line-height: 1.1;
+  color: var(--text-1);
+
+  span { color: var(--accent); }
+}
+
+.hero-title-wrap {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--text-2);
+  margin-bottom: 24px;
+  min-height: 2em;
+}
+
+.typewriter {
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.cursor {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 300;
+  animation: blink 0.9s step-end infinite;
+  margin-left: 1px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.hero-summary {
+  font-size: 0.95rem;
+  color: var(--text-2);
+  line-height: 1.8;
+  margin: 0 0 36px;
+  max-width: 540px;
+}
+
+// ── CTA Buttons ───────────────────────────────────────────────────────────
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  align-items: center;
+}
+
+.btn-contact,
+.btn-cv {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  border-radius: 8px !important;
+  text-decoration: none;
+}
+
+.btn-cv {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  &:hover { background: var(--accent-dim) !important; }
+}
+
+// ── Social links ──────────────────────────────────────────────────────────
+.hero-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.link-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 0.84rem;
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+
+  mat-icon { font-size: 1rem; width: 1rem; height: 1rem; }
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+}
