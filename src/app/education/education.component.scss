@@ -54,7 +54,6 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  overflow: hidden;
   transition: border-color var(--transition), box-shadow var(--transition);
 
   &:hover {

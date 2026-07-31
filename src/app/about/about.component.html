@@ -5,9 +5,9 @@
     <div class="section-line"></div>
   </div>
 
+  <!-- ── Top: avatar + narrative ── -->
   <div class="about-body">
 
-    <!-- Avatar + summary -->
     <div class="about-left reveal reveal-left" style="transition-delay:0.1s">
       <div class="about-avatar">
         <div class="avatar-ring"></div>
@@ -18,21 +18,43 @@
     <div class="about-right reveal" style="transition-delay:0.2s">
       <p class="about-role">{{ hero.name }}</p>
       <h3 class="about-title">{{ hero.title }}</h3>
-      <p class="about-summary">{{ hero.summary }}</p>
+
+      @for (para of about.paragraphs; track para) {
+        <p class="about-para">{{ para }}</p>
+      }
 
       <div class="about-contact">
         <a [href]="'mailto:' + hero.email" class="contact-chip">
-          <mat-icon>email</mat-icon> {{ hero.email }}
+          <mat-icon>email</mat-icon><span>{{ hero.email }}</span>
         </a>
         <a [href]="'tel:' + hero.phone" class="contact-chip">
-          <mat-icon>phone</mat-icon> {{ hero.phone }}
+          <mat-icon>phone</mat-icon><span>{{ hero.phone }}</span>
         </a>
+      </div>
+
+      <div class="current-focus reveal" style="transition-delay:0.3s">
+        <mat-icon class="focus-icon">track_changes</mat-icon>
+        <div>
+          <span class="focus-label">Current focus</span>
+          <span class="focus-text">{{ about.focus }}</span>
+        </div>
       </div>
     </div>
 
   </div>
 
-  <!-- Stats row -->
+  <!-- ── Specialisations grid ── -->
+  <div class="spec-grid">
+    @for (spec of about.specialisations; track spec.label; let i = $index) {
+      <div class="spec-card reveal shimmer-card" [style.transitionDelay]="(0.1 + i * 0.08) + 's'">
+        <mat-icon class="spec-icon">{{ spec.icon }}</mat-icon>
+        <div class="spec-label">{{ spec.label }}</div>
+        <div class="spec-detail">{{ spec.detail }}</div>
+      </div>
+    }
+  </div>
+
+  <!-- ── Stats row ── -->
   <div class="stats-row">
     @for (stat of stats; track stat.label; let i = $index) {
       <div class="stat-card reveal shimmer-card" [style.transitionDelay]="(0.1 + i * 0.1) + 's'">

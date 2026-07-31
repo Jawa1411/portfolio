@@ -10,13 +10,14 @@ import { ResumeDataService } from '../core/services/resume-data.service';
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-  hero = this.data.hero;
+  hero  = this.data.hero;
+  about = this.data.about;
 
   readonly stats = [
-    { value: '4+',  label: 'Years Experience' },
-    { value: '2',   label: 'Companies'         },
-    { value: '5+',  label: 'Projects Owned'    },
-    { value: '3',   label: 'Awards Won'        },
+    { value: '5+', label: 'Years Experience' },
+    { value: '2',  label: 'Companies'        },
+    { value: '5+', label: 'Projects Owned'   },
+    { value: '3',  label: 'Awards Won'       },
   ];
 
   constructor(private data: ResumeDataService) {
@@ -24,7 +25,6 @@ export class AboutComponent {
   }
 
   private initReveal(): void {
-    const els = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(
       entries => entries.forEach(e => {
         if (e.isIntersecting) {
@@ -34,6 +34,6 @@ export class AboutComponent {
       }),
       { threshold: 0.12 }
     );
-    els.forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
 }

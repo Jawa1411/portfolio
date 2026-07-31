@@ -1,9 +1,9 @@
 .about-body {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 220px 1fr;
   gap: 56px;
   align-items: start;
-  margin-bottom: 72px;
+  margin-bottom: 56px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -11,7 +11,7 @@
   }
 }
 
-// ── Avatar ────────────────────────────────────────────────────────────────
+// ── Avatar column ─────────────────────────────────────────────────────────
 .about-left {
   display: flex;
   justify-content: center;
@@ -21,6 +21,7 @@
   position: relative;
   width: 150px;
   height: 150px;
+  flex-shrink: 0;
 }
 
 .avatar-ring {
@@ -28,9 +29,9 @@
   inset: 0;
   border-radius: 50%;
   border: 2px solid var(--accent);
-  animation: spinRing 8s linear infinite;
   border-top-color: transparent;
   border-right-color: transparent;
+  animation: spinRing 8s linear infinite;
 }
 
 @keyframes spinRing {
@@ -51,35 +52,11 @@
   border: 1.5px solid var(--accent-mid);
 }
 
-// ── Text ──────────────────────────────────────────────────────────────────
-.about-right {}
-
-.about-role {
-  font-size: 0.85rem;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin: 0 0 4px;
-}
-
-.about-title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin: 0 0 20px;
-  color: var(--text-1);
-}
-
-.about-summary {
-  font-size: 0.95rem;
-  color: var(--text-2);
-  line-height: 1.85;
-  margin: 0 0 28px;
-}
-
 .about-contact {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .contact-chip {
@@ -92,9 +69,10 @@
   padding: 7px 14px;
   border: 1px solid var(--border);
   border-radius: 24px;
+  white-space: nowrap;
   transition: color var(--transition), border-color var(--transition), background var(--transition);
 
-  mat-icon { font-size: 0.95rem; width: 0.95rem; height: 0.95rem; }
+  mat-icon { font-size: 0.9rem; width: 0.9rem; height: 0.9rem; flex-shrink: 0; }
 
   &:hover {
     color: var(--accent);
@@ -103,7 +81,108 @@
   }
 }
 
-// ── Stats ─────────────────────────────────────────────────────────────────
+// ── Narrative column ──────────────────────────────────────────────────────
+.about-role {
+  font-size: 0.82rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 4px;
+}
+
+.about-title {
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin: 0 0 20px;
+  color: var(--text-1);
+}
+
+.about-para {
+  font-size: 0.95rem;
+  color: var(--text-2);
+  line-height: 1.85;
+  margin: 0 0 16px;
+}
+
+// ── Current focus bar ─────────────────────────────────────────────────────
+.current-focus {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--accent-mid);
+  background: var(--accent-dim);
+}
+
+.focus-icon {
+  color: var(--accent);
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.focus-label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 3px;
+}
+
+.focus-text {
+  font-size: 0.875rem;
+  color: var(--text-1);
+  font-weight: 500;
+}
+
+// ── Specialisations grid ──────────────────────────────────────────────────
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.spec-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+
+  &:hover {
+    transform: translateY(-3px);
+    .spec-icon { color: var(--accent); }
+  }
+}
+
+.spec-icon {
+  font-size: 1.4rem;
+  color: var(--text-2);
+  transition: color var(--transition);
+  margin-bottom: 4px;
+}
+
+.spec-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.spec-detail {
+  font-size: 0.75rem;
+  color: var(--text-2);
+}
+
+// ── Stats row ─────────────────────────────────────────────────────────────
 .stats-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -122,10 +201,7 @@
   text-align: center;
   transition: transform var(--transition), box-shadow var(--transition);
 
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  }
+  &:hover { transform: translateY(-4px); }
 }
 
 .stat-value {

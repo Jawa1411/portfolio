@@ -195,32 +195,17 @@ mat-sidenav-content,
 
 // ─── SHIMMER CARD ────────────────────────────────────────────────────────
 .shimmer-card {
-  position: relative;
-  overflow: hidden;
+  transition: border-color var(--transition), box-shadow var(--transition);
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    border: 1.5px solid transparent;
-    background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
-                linear-gradient(135deg, transparent 40%, var(--accent), transparent 60%) border-box;
-    background-size: 200% 200%;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--transition);
-  }
-
-  &:hover::after {
-    opacity: 1;
-    animation: shimmerBorder 1.8s linear infinite;
+  &:hover {
+    border-color: var(--accent-mid) !important;
+    animation: shimmerGlow 2s ease-in-out infinite;
   }
 }
 
-@keyframes shimmerBorder {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+@keyframes shimmerGlow {
+  0%, 100% { box-shadow: 0 0 0 1px var(--accent-dim), 0 8px 32px rgba(0, 0, 0, 0.25); }
+  50%       { box-shadow: 0 0 0 1px var(--accent-mid), 0 8px 40px rgba(0, 0, 0, 0.3), var(--accent-glow); }
 }
 
 // ─── SCROLLBAR ───────────────────────────────────────────────────────────

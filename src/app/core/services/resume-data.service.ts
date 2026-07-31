@@ -7,10 +7,27 @@ export class ResumeDataService {
   readonly hero: IHero = {
     name: 'Jawahar S',
     title: 'Fullstack Web Developer',
-    summary: 'Fullstack Web Developer with 4+ years of experience building and owning end-to-end web applications. Proficient in C#, Python, TypeScript, .Net Core, Angular, FastAPI, and SQL databases. Experienced in REST API design, system integrations, real-time communication, Docker, and Azure services.',
+    summary: 'Building scalable fullstack solutions — from backend APIs to polished UIs — end to end.',
     email: 'jawaharsenthil1411@gmail.com',
     phone: '+91 86950 77932',
     linkedin: 'https://linkedin.com/in/jawahar-s'
+  };
+
+  readonly about = {
+    paragraphs: [
+      `I'm a Fullstack Web Developer with 5+ years of experience taking products from zero to production — owning database design, backend APIs, and frontend delivery across the same project. I don't hand off between layers; I build all of them.`,
+      `My backend work lives in C#, .Net Core, and Python (FastAPI / Flask), with SQL Server and MySQL underneath. On the frontend, Angular is my home. I've shipped real-time systems with SignalR, multi-portal SSO via IdentityServer4, IoT sensor pipelines, and complex enterprise workflows — across two companies and five distinct client domains.`,
+      `Right now at Accenture, I solely own an end-to-end insurance data integration pipeline and am spearheading automation of manual configuration work using Claude AI — turning hours of repetitive setup into structured prompt-driven flows.`
+    ],
+    focus: 'Integration automation · AI-assisted development · Scalable system design',
+    specialisations: [
+      { icon: 'dns',            label: 'Backend APIs',         detail: '.Net Core · FastAPI · REST' },
+      { icon: 'web',            label: 'Frontend',             detail: 'Angular · TypeScript' },
+      { icon: 'bolt',           label: 'Real-time Systems',    detail: 'SignalR · WebSocket' },
+      { icon: 'hub',            label: 'System Integration',   detail: 'Pipelines · Data Mapping' },
+      { icon: 'storage',        label: 'Databases',            detail: 'SQL Server · MySQL · EF Core' },
+      { icon: 'smart_toy',      label: 'AI Automation',        detail: 'Claude AI · Prompt Engineering' },
+    ]
   };
 
   readonly skillGroups: ISkillGroup[] = [
