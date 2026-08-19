@@ -204,9 +204,4 @@
     background: var(--accent-dim);
   }
 
-  &--accent {
-    color: var(--accent);
-    border-color: var(--accent-mid);
-    &:hover { background: var(--accent-dim); }
-  }
 }
