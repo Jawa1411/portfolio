@@ -176,31 +176,7 @@
   max-width: 540px;
 }
 
-// ── CTA Buttons ───────────────────────────────────────────────────────────
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
-  align-items: center;
-}
-
-.btn-contact,
-.btn-cv {
-  display: inline-flex !important;
-  align-items: center;
-  gap: 6px;
-  border-radius: 8px !important;
-  text-decoration: none;
-}
-
-.btn-cv {
-  border-color: var(--accent) !important;
-  color: var(--accent) !important;
-  &:hover { background: var(--accent-dim) !important; }
-}
-
-// ── Social links ──────────────────────────────────────────────────────────
+// ── Action links ──────────────────────────────────────────────────────────
 .hero-links {
   display: flex;
   align-items: center;
@@ -226,5 +202,11 @@
     color: var(--accent);
     border-color: var(--accent);
     background: var(--accent-dim);
+  }
+
+  &--accent {
+    color: var(--accent);
+    border-color: var(--accent-mid);
+    &:hover { background: var(--accent-dim); }
   }
 }
