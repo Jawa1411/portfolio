@@ -10,7 +10,7 @@ export class ResumeDataService {
     summary: 'Building scalable fullstack solutions — from backend APIs to polished UIs — end to end.',
     email: 'jawaharsenthil1411@gmail.com',
     phone: '+91 86950 77932',
-    linkedin: 'https://linkedin.com/in/jawahar-s'
+    linkedin: 'https://linkedin.com/in/jawaharsenthilkumar'
   };
 
   readonly about = {
