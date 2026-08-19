@@ -74,6 +74,13 @@
   background: var(--bg-card);
   z-index: 1;
   border-bottom: 1px solid var(--border);
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px 16px 14px;
+  }
 }
 
 .company-name {
@@ -167,7 +174,11 @@
 .bullets {
   list-style: none;
   margin: 0;
-  padding: 8px 24px 20px 32px;
+  padding: 8px 16px 16px 28px;
+
+  @media (min-width: 601px) {
+    padding: 8px 24px 20px 32px;
+  }
   display: flex;
   flex-direction: column;
   gap: 8px;

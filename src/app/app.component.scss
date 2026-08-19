@@ -118,6 +118,28 @@
   &:hover { color: var(--accent) !important; }
 }
 
+// ── Mobile top bar ─────────────────────────────────────────────────────────
+.mobile-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .mobile-title {
+    flex: 1;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+
+  .menu-btn, .theme-btn { color: var(--text-2) !important; }
+}
+
 // ── Main ───────────────────────────────────────────────────────────────────
 .main-content {
   position: relative;

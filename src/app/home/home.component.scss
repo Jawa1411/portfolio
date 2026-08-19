@@ -99,6 +99,10 @@
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
+@media (max-width: 768px) {
+  .dial-wrap { display: none; }
+}
+
 // ── Flash overlay ─────────────────────────────────────────────────────────
 .flash {
   position: fixed;

@@ -1,8 +1,10 @@
-import { Component, OnInit, PLATFORM_ID, Inject, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject, ViewChild } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { trigger, transition, style, animate, query, group } from '@angular/animations';
 import { MaterialModule } from './material/material.module';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -29,9 +31,10 @@ import { MaterialModule } from './material/material.module';
   ]
 })
 export class AppComponent implements OnInit {
+  @ViewChild('sidenav') sidenav!: MatSidenav;
   isDark = true;
   scrollPct = 0;
-  isMobileNavOpen = false;
+  isMobile = false;
 
   readonly navItems = [
     { label: 'Home',         icon: 'home',         route: '/home' },
@@ -44,13 +47,20 @@ export class AppComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
-    private cdr: ChangeDetectorRef
+    private breakpointObserver: BreakpointObserver
   ) {}
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       document.body.classList.add('dark-theme');
+      this.breakpointObserver.observe('(max-width: 768px)').subscribe(result => {
+        this.isMobile = result.matches;
+      });
     }
+  }
+
+  onNavClick(): void {
+    if (this.isMobile) this.sidenav.close();
   }
 
   onContentScroll(event: Event): void {
