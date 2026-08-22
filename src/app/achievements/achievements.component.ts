@@ -1,4 +1,4 @@
-import { Component, afterNextRender } from '@angular/core';
+import { Component, afterNextRender, ElementRef } from '@angular/core';
 import { MaterialModule } from '../material/material.module';
 import { ResumeDataService } from '../core/services/resume-data.service';
 
@@ -18,12 +18,14 @@ export class AchievementsComponent {
     'ACE Award':           'military_tech',
   };
 
-  constructor(private data: ResumeDataService) {
+  constructor(private data: ResumeDataService, private el: ElementRef) {
     afterNextRender(() => this.initReveal());
   }
 
   private initReveal(): void {
-    const cards = document.querySelectorAll<HTMLElement>('.award-card');
+    const root  = this.el.nativeElement as HTMLElement;
+    const cards = root.querySelectorAll<HTMLElement>('.award-card');
+
     const observer = new IntersectionObserver(
       entries => entries.forEach(e => {
         if (e.isIntersecting) {
@@ -35,10 +37,12 @@ export class AchievementsComponent {
     );
     cards.forEach(c => observer.observe(c));
 
-    const header = document.querySelector('.section-header');
+    const header = root.querySelector('.section-header');
     if (header) {
       const ho = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); ho.unobserve(e.target); } });
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); ho.unobserve(e.target); }
+        });
       }, { threshold: 0.1 });
       ho.observe(header);
     }

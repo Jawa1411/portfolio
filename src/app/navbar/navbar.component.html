@@ -1,0 +1,45 @@
+<nav class="navbar" [class.scrolled]="scrolled">
+  <div class="nav-inner">
+
+    <button class="nav-logo" (click)="scrollTo('home')" aria-label="Scroll to top">JS</button>
+
+    <div class="nav-links">
+      @for (item of navItems; track item.id) {
+        <button
+          class="nav-link"
+          [class.active]="activeSection === item.id"
+          (click)="scrollTo(item.id)"
+        >{{ item.label }}</button>
+      }
+    </div>
+
+    <div class="nav-actions">
+      <button
+        mat-icon-button
+        class="theme-btn"
+        (click)="themeToggle.emit()"
+        [matTooltip]="isDark ? 'Light mode' : 'Dark mode'"
+      >
+        <mat-icon>{{ isDark ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+      <button mat-icon-button class="hamburger" (click)="menuOpen = !menuOpen" aria-label="Toggle menu">
+        <mat-icon>{{ menuOpen ? 'close' : 'menu' }}</mat-icon>
+      </button>
+    </div>
+
+  </div>
+
+  @if (menuOpen) {
+    <div class="mobile-menu">
+      @for (item of navItems; track item.id) {
+        <button
+          class="mobile-link"
+          [class.active]="activeSection === item.id"
+          (click)="scrollTo(item.id)"
+        >{{ item.label }}</button>
+      }
+    </div>
+  }
+
+  <div class="scroll-progress" [style.width.%]="scrollPct"></div>
+</nav>

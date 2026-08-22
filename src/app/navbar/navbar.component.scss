@@ -1,0 +1,162 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: background var(--transition), border-color var(--transition);
+  border-bottom: 1px solid transparent;
+
+  &.scrolled {
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom-color: var(--border);
+  }
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 40px;
+  height: 60px;
+
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
+}
+
+// ── Logo ──────────────────────────────────────────────────────────────────
+.nav-logo {
+  background: var(--accent-dim);
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition), box-shadow var(--transition), color var(--transition);
+  font-family: inherit;
+
+  &:hover {
+    background: var(--accent);
+    color: #0d0d0d;
+    box-shadow: var(--accent-glow);
+  }
+}
+
+// ── Desktop links ─────────────────────────────────────────────────────────
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  color: var(--text-2);
+  font-size: 0.84rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+  font-family: inherit;
+  letter-spacing: 0.01em;
+
+  &:hover {
+    color: var(--text-1);
+    background: var(--accent-dim);
+  }
+
+  &.active {
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────
+.nav-actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 4px;
+}
+
+.theme-btn {
+  color: var(--text-2) !important;
+  &:hover { color: var(--accent) !important; }
+}
+
+.hamburger {
+  display: none !important;
+  color: var(--text-2) !important;
+
+  @media (max-width: 768px) {
+    display: flex !important;
+  }
+}
+
+// ── Mobile menu ───────────────────────────────────────────────────────────
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px 16px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  gap: 2px;
+  animation: slideDown 0.2s ease-out;
+}
+
+.mobile-link {
+  background: none;
+  border: none;
+  color: var(--text-2);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: color var(--transition), background var(--transition);
+  font-family: inherit;
+
+  &:hover {
+    color: var(--text-1);
+    background: var(--accent-dim);
+  }
+
+  &.active {
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ── Scroll progress ───────────────────────────────────────────────────────
+.scroll-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: var(--accent-glow);
+  transition: width 0.1s linear;
+  border-radius: 0 2px 2px 0;
+  pointer-events: none;
+}

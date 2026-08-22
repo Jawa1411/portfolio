@@ -1,4 +1,4 @@
-import { Component, afterNextRender } from '@angular/core';
+import { Component, afterNextRender, ElementRef } from '@angular/core';
 import { MaterialModule } from '../material/material.module';
 import { ResumeDataService } from '../core/services/resume-data.service';
 
@@ -20,11 +20,12 @@ export class AboutComponent {
     { value: '3',  label: 'Awards Won'       },
   ];
 
-  constructor(private data: ResumeDataService) {
+  constructor(private data: ResumeDataService, private el: ElementRef) {
     afterNextRender(() => this.initReveal());
   }
 
   private initReveal(): void {
+    const root = this.el.nativeElement as HTMLElement;
     const observer = new IntersectionObserver(
       entries => entries.forEach(e => {
         if (e.isIntersecting) {
@@ -34,6 +35,6 @@ export class AboutComponent {
       }),
       { threshold: 0.12 }
     );
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    root.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
 }

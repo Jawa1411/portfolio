@@ -2,14 +2,13 @@ import {
   Component, OnDestroy, ElementRef, ViewChild,
   afterNextRender, PLATFORM_ID, Inject
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import { ResumeDataService } from '../core/services/resume-data.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MaterialModule, RouterLink],
+  imports: [MaterialModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

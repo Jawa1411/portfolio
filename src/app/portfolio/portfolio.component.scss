@@ -1,0 +1,54 @@
+.portfolio {
+  padding-top: 60px;
+}
+
+// ── Parallax separator bands ───────────────────────────────────────────────
+.parallax-band {
+  position: relative;
+  height: 100px;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.band-line {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-dim) 30%,
+    var(--accent-mid) 50%,
+    var(--accent-dim) 70%,
+    transparent
+  );
+}
+
+.band-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+
+  &.orb-a {
+    width: 360px;
+    height: 360px;
+    top: 50%;
+    left: 8%;
+    transform: translateY(-50%);
+    background: radial-gradient(circle, var(--accent), transparent 65%);
+    opacity: 0.12;
+  }
+
+  &.orb-b {
+    width: 240px;
+    height: 240px;
+    top: 50%;
+    right: 12%;
+    transform: translateY(-50%);
+    background: radial-gradient(circle, var(--accent), transparent 65%);
+    opacity: 0.08;
+  }
+}

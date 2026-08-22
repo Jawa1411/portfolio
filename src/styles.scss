@@ -83,7 +83,6 @@ $light-theme: mat.define-light-theme((
   --text-2:       #888888;
   --border:       rgba(255, 255, 255, 0.07);
 
-  --sidenav-w:    230px;
   --radius:       12px;
   --transition:   0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -114,24 +113,6 @@ html, body {
   background: var(--bg);
   color: var(--text-1);
   scroll-behavior: smooth;
-}
-
-// ─── MATERIAL OVERRIDES ───────────────────────────────────────────────────
-mat-sidenav-container,
-.mat-sidenav-container {
-  background: var(--bg) !important;
-  height: 100%;
-}
-
-mat-sidenav,
-.mat-sidenav {
-  background: var(--bg-card) !important;
-  border-right: 1px solid var(--border) !important;
-}
-
-mat-sidenav-content,
-.mat-sidenav-content {
-  background: var(--bg) !important;
 }
 
 // ─── SECTION LAYOUT ──────────────────────────────────────────────────────
@@ -242,8 +223,6 @@ mat-sidenav-content,
 
 // ─── MOBILE RESPONSIVE ───────────────────────────────────────────────────
 @media (max-width: 768px) {
-  :root { --sidenav-w: 100vw; }
-
   .section { padding: 48px 24px; }
   .section-title { font-size: 1.6rem; }
 }

@@ -1,4 +1,4 @@
-import { Component, afterNextRender } from '@angular/core';
+import { Component, afterNextRender, ElementRef } from '@angular/core';
 import { MaterialModule } from '../material/material.module';
 import { ResumeDataService } from '../core/services/resume-data.service';
 
@@ -13,7 +13,7 @@ export class ExperienceComponent {
   experiences = this.data.experiences;
   expandedProjects: Set<string> = new Set();
 
-  constructor(private data: ResumeDataService) {
+  constructor(private data: ResumeDataService, private el: ElementRef) {
     afterNextRender(() => this.initReveal());
   }
 
@@ -30,6 +30,7 @@ export class ExperienceComponent {
   }
 
   private initReveal(): void {
+    const root = this.el.nativeElement as HTMLElement;
     const observer = new IntersectionObserver(
       entries => entries.forEach(e => {
         if (e.isIntersecting) {
@@ -39,13 +40,14 @@ export class ExperienceComponent {
       }),
       { threshold: 0.1 }
     );
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    root.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Timeline line draw
-    const line = document.querySelector<HTMLElement>('.timeline-line');
+    const line = root.querySelector<HTMLElement>('.timeline-line');
     if (line) {
       const lo = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { line.classList.add('draw'); lo.unobserve(e.target); } });
+        entries.forEach(e => {
+          if (e.isIntersecting) { line.classList.add('draw'); lo.unobserve(e.target); }
+        });
       }, { threshold: 0.05 });
       lo.observe(line);
     }

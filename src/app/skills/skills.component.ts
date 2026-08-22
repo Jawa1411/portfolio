@@ -1,4 +1,4 @@
-import { Component, afterNextRender } from '@angular/core';
+import { Component, afterNextRender, ElementRef } from '@angular/core';
 import { MaterialModule } from '../material/material.module';
 import { ResumeDataService } from '../core/services/resume-data.service';
 
@@ -12,12 +12,13 @@ import { ResumeDataService } from '../core/services/resume-data.service';
 export class SkillsComponent {
   skillGroups = this.data.skillGroups;
 
-  constructor(private data: ResumeDataService) {
+  constructor(private data: ResumeDataService, private el: ElementRef) {
     afterNextRender(() => this.initChipReveal());
   }
 
   private initChipReveal(): void {
-    const groups = document.querySelectorAll<HTMLElement>('.skill-group');
+    const root   = this.el.nativeElement as HTMLElement;
+    const groups = root.querySelectorAll<HTMLElement>('.skill-group');
 
     const observer = new IntersectionObserver(
       entries => entries.forEach(entry => {
@@ -34,11 +35,12 @@ export class SkillsComponent {
 
     groups.forEach(g => observer.observe(g));
 
-    // Section header reveal
-    const header = document.querySelector('.section-header');
+    const header = root.querySelector('.section-header');
     if (header) {
       const ho = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); ho.unobserve(e.target); } });
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); ho.unobserve(e.target); }
+        });
       }, { threshold: 0.1 });
       ho.observe(header);
     }
